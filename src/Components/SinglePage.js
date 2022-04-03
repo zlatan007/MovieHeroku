@@ -16,7 +16,7 @@ const SinglePage = ({data,handleCheck}) => {
                 <>
                 {console.log('check', item.checked)}
                 <div key={item.id}> 
-                    <input
+                    <input 
                         type="checkbox"
                         id={item.id}
                         name={item.value}

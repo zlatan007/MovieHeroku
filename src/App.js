@@ -1,42 +1,29 @@
-import React, { useState } from 'react'
-import SinglePage from './Components/SinglePage';
-import Navbar from './Navbar'
-function App() {
-  const [value,setValue] = useState("");
-  const [todoList,setTodoList] = useState([]);
-  
-  const handleChange = (e) => {
-    setValue(e.target.value)
-  }
+import React,{useState} from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Contact from './Components/Contact';
 
-  const handleCheck = (id,index) => {
-    console.log(id,index);
-    const newArr = [...todoList];
-    const newObj = {...todoList[index]};
-    newObj.checked = !todoList[index].checked;
-    newArr[index] = newObj;
-    setTodoList(newArr);
-  }
-  const handleClick = () => {
-    const obj = {
-      id: Math.floor(Math.random() * 1000),
-      value,
-      checked: false,
-    }
-    
-    setTodoList([...todoList,obj]);
-    setValue("");
-  }
-  console.log(todoList);
+
+const App = () => {
+  console.log('rendered');
   return (
     <>
-      <div className='wrapper'>
+      <Router>
         <div>
-          <input type="text" value={value} onChange={handleChange}/>
-          <button onClick={handleClick}>Submit</button>
-          {todoList && todoList.length > 0 && <SinglePage data={todoList} handleCheck={handleCheck}/>}
+          <Switch>
+            <Route exact path="/">
+              <Contact />
+            </Route>
+            {/* <Route exact path="/page">
+              <SinglePage />
+            </Route> */}
+          </Switch>
         </div>
-      </div>
+      </Router>
     </>
   )
 }
